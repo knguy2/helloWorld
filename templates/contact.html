@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block page_title %} Contact Me {% endblock %}
+{% block page_head %} Contact Me {% endblock %}
+{% block page_content %}
+    <div class ="container">
+    {%  if form_submitted %}
+        <div class="col-12">
+            <h2> Thank you for submitting my form!</h2>
+        </div>
+        <div class="col-md-6">
+            <p> First Name:</p>
+        </div>
+        <div class="col-md-6">
+            <p> {{ request.form.get('InputFirstName') }}</p>
+        </div>
+        <div class="col-md-6">
+            <p> Last Name:</p>
+        </div>
+        <div class="col-md-6">
+            <p> {{ request.form.get('InputLastName') }}</p>
+        </div>
+        <div class="col-md-6">
+            <p> Email Address:</p>
+        </div>
+        <div class="col-md-6">
+            <p> {{ request.form.get('InputEmailAddress') }}</p>
+        </div>
+        <div class="col-md-6">
+            <p> Phone Number:</p>
+        </div>
+        <div class="col-md-6">
+            <p> {{ request.form.get('InputPhoneNumber') }}</p>
+        </div>
+        <p><a href="{{ url_for('contact') }}"> Complete form again </a></p>
+    {% else %}
+        <form class="row g-3" action="{{ url_for('contact') }}" method="post">
+            <div class="col-md-6">
+                <label for="InputFirstName" class="form-label"> First Name: </label>
+                <input type="text" class="form-control" id="InputFirstName" name="InputFirstName">
+            </div>
+            <div class="col-md-6">
+                <label for="InputLastName" class="form-label"> Last Name: </label>
+                <input type="text" class="form-control" id="InputLastName" name="InputLastName">
+            </div>
+            <div class="col-12">
+                <label for="InputEmailAddress" class="form-label"> Email Address: </label>
+                <input type="text" class="form-control" id="InputEmailAddress" name="InputEmailAddress">
+            </div>
+            <div class="col-12">
+                <label for="InputPhoneNumber" class="form-label"> Phone Number: </label>
+                <input type="text" class="form-control" id="InputPhoneNumber" name="InputPhoneNumber">
+            </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}
